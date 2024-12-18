@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 @Table(name = "topics")
 @Entity(name = "Topic")
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -19,7 +18,6 @@ public class Topic {
     private String title;
     private String message;
     private LocalDateTime creationDate;
-    @Getter
     private boolean status;
     private String autor;
 
