@@ -19,6 +19,7 @@ public class Topic {
     private String title;
     private String message;
     private LocalDateTime creationDate;
+    @Getter
     private boolean status;
     private String autor;
 
@@ -32,5 +33,9 @@ public class Topic {
         this.status = topicDTO.status();
         this.autor = topicDTO.autor();
         this.curse = topicDTO.curse();
+    }
+
+    public boolean getStatus() {
+        return status;
     }
 }
