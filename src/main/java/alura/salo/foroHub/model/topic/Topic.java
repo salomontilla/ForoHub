@@ -1,4 +1,4 @@
-package alura.salo.foroHub.model;
+package alura.salo.foroHub.model.topic;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

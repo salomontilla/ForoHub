@@ -1,6 +1,5 @@
-package alura.salo.foroHub.model;
+package alura.salo.foroHub.model.topic;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
