@@ -27,7 +27,7 @@ public class Topic {
         this.title = topicDTO.title();
         this.message = topicDTO.message();
         this.creationDate = createDate();
-        this.status = topicDTO.status();
+        this.status = true;
         this.autor = topicDTO.autor();
         this.curse = topicDTO.curse();
     }

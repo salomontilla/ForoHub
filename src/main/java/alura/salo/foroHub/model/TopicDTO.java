@@ -10,8 +10,6 @@ public record TopicDTO(
         @NotEmpty
         String message,
         @NotNull
-        boolean status,
-        @NotNull
         String autor,
         @NotNull
         Curse curse
