@@ -4,11 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import java.time.LocalDateTime;
-import lombok.NoArgsConstructor;
 
 @Table(name = "topics")
 @Entity(name = "Topic")
-@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Topic {
@@ -30,6 +28,9 @@ public class Topic {
         this.status = true;
         this.autor = topicDTO.autor();
         this.curse = topicDTO.curse();
+    }
+
+    public Topic() {
     }
 
     public LocalDateTime createDate() {
