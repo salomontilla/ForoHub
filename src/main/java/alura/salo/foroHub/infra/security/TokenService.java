@@ -1,6 +1,6 @@
 package alura.salo.foroHub.infra.security;
 
-import alura.salo.foroHub.model.UserModel;
+import alura.salo.foroHub.model.user.UserModel;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;

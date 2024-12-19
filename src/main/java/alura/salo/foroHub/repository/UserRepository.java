@@ -1,6 +1,6 @@
 package alura.salo.foroHub.repository;
 
-import alura.salo.foroHub.model.UserModel;
+import alura.salo.foroHub.model.user.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 

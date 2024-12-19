@@ -2,8 +2,8 @@ package alura.salo.foroHub.controller;
 
 import alura.salo.foroHub.infra.security.TokenService;
 import alura.salo.foroHub.model.JWTResponseDTO;
-import alura.salo.foroHub.model.UserDTO;
-import alura.salo.foroHub.model.UserModel;
+import alura.salo.foroHub.model.user.UserDTO;
+import alura.salo.foroHub.model.user.UserModel;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
