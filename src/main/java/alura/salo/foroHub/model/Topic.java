@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import lombok.NoArgsConstructor;
 
 @Table(name = "topics")
@@ -34,7 +33,7 @@ public class Topic {
     }
 
     public LocalDateTime createDate() {
-        return LocalDateTime.parse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yy HH:mm")));
+        return LocalDateTime.now();
     }
 
     public Long getId() {

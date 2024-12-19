@@ -36,7 +36,7 @@ public class TokenService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(apiSecret);
             return JWT.require(algorithm)
-                    .withIssuer("Voll Med")
+                    .withIssuer("Alura Project")
                     .build().verify(token).getSubject();
 
         } catch (JWTCreationException exception){

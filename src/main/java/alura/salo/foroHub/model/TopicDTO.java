@@ -1,16 +1,19 @@
 package alura.salo.foroHub.model;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 public record TopicDTO(
-        @NotBlank
+        @NotEmpty
         String title,
-        @NotBlank
+        @NotEmpty
         String message,
-        @NotBlank
+        @NotNull
         boolean status,
-        @NotBlank
+        @NotNull
         String autor,
-        @NotBlank
+        @NotNull
         Curse curse
 ) {
 }

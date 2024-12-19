@@ -4,3 +4,5 @@ create table users (
     password varchar(300) not null,
     primary key (id)
 );
+insert into users (username, password)
+values ('admin', '$2a$12$fBUZfFI/FV3ym814.nnQ3.KtOBkrSu450Wh0zmArzx9UAJ2td0psO');

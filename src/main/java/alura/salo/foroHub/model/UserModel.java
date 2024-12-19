@@ -14,7 +14,6 @@ import java.util.List;
 
 @Table(name = "users")
 @Entity(name = "UserModel")
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -25,6 +24,10 @@ public class UserModel implements UserDetails{
     private long id;
     private String username;
     private String password;
+
+    public long getId() {
+        return id;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
