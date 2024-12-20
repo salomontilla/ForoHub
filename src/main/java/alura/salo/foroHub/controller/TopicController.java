@@ -45,12 +45,9 @@ public class TopicController {
     @PutMapping
     @Transactional
     public ResponseEntity <TopicResponseDTO> updateTopic(@RequestBody @Valid UpdateTopicDTO topic){
-        Topic newTopic = topicRepository.getReferenceById(topic.id());
-        newTopic.actualizarDatos(medico);
-        return ResponseEntity.ok(new DatosMedicoRespuestaDTO(nuevoMedico.getId(), nuevoMedico.getNombre(), nuevoMedico.getApellido(),
-                nuevoMedico.getEmail(), nuevoMedico.getTelefono(), nuevoMedico.getEspecialidad().toString(),
-                new DatosDireccionDTO(nuevoMedico.getDireccion().getCalle(), nuevoMedico.getDireccion().getBarrio(),
-                        nuevoMedico.getDireccion().getCiudad())));
+        Topic newTopic = topicRepository.getReferenceById(topic.id());newTopic.updateTopic(topic);
+        return ResponseEntity.ok(new TopicResponseDTO(newTopic.getId(), newTopic.getTitle(), newTopic.getMessage(),
+                newTopic.getCreationDate(), newTopic.getStatus(), newTopic.getAutor(), newTopic.getCurse()));
     }
 
 }
