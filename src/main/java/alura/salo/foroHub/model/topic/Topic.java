@@ -37,6 +37,11 @@ public class Topic {
         return LocalDateTime.now();
     }
 
+    public void updateTopic(UpdateTopicDTO updateTopicDTO) {
+        this.title = updateTopicDTO.title();
+        this.message = updateTopicDTO.message();
+    }
+
     public Long getId() {
         return id;
     }

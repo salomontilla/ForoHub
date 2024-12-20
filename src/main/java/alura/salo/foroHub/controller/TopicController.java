@@ -3,7 +3,10 @@ package alura.salo.foroHub.controller;
 import alura.salo.foroHub.model.topic.Topic;
 import alura.salo.foroHub.model.topic.TopicDTO;
 import alura.salo.foroHub.model.topic.TopicResponseDTO;
+import alura.salo.foroHub.model.topic.UpdateTopicDTO;
+import alura.salo.foroHub.model.topic.validations.DuplicatedTopicValidator;
 import alura.salo.foroHub.repository.TopicRepository;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,8 +23,12 @@ public class TopicController {
     @Autowired
     TopicRepository topicRepository;
 
+    @Autowired
+    DuplicatedTopicValidator duplicatedTopicValidator;
+
     @PostMapping
     public ResponseEntity<TopicResponseDTO> createTopic(@RequestBody @Valid TopicDTO topicDTO, UriComponentsBuilder uriBuilder) {
+        duplicatedTopicValidator.validate(new Topic(topicDTO));
 
         Topic newTopic = topicRepository.save(new Topic(topicDTO));
         TopicResponseDTO topicResponseDTO = new TopicResponseDTO(newTopic.getId(), newTopic.getTitle(), newTopic.getMessage(),
@@ -33,6 +40,17 @@ public class TopicController {
     @GetMapping
     public ResponseEntity<Page<TopicResponseDTO>> showTopics(Pageable pageable){
         return ResponseEntity.ok(topicRepository.findByStatusTrue(pageable).map(TopicResponseDTO::new));
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity <TopicResponseDTO> updateTopic(@RequestBody @Valid UpdateTopicDTO topic){
+        Topic newTopic = topicRepository.getReferenceById(topic.id());
+        newTopic.actualizarDatos(medico);
+        return ResponseEntity.ok(new DatosMedicoRespuestaDTO(nuevoMedico.getId(), nuevoMedico.getNombre(), nuevoMedico.getApellido(),
+                nuevoMedico.getEmail(), nuevoMedico.getTelefono(), nuevoMedico.getEspecialidad().toString(),
+                new DatosDireccionDTO(nuevoMedico.getDireccion().getCalle(), nuevoMedico.getDireccion().getBarrio(),
+                        nuevoMedico.getDireccion().getCiudad())));
     }
 
 }
