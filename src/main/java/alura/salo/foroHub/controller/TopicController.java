@@ -1,5 +1,6 @@
 package alura.salo.foroHub.controller;
 
+import alura.salo.foroHub.exceptions.TopicNotFoundException;
 import alura.salo.foroHub.model.topic.Topic;
 import alura.salo.foroHub.model.topic.TopicDTO;
 import alura.salo.foroHub.model.topic.TopicResponseDTO;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/topics")
@@ -45,6 +47,7 @@ public class TopicController {
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity <TopicResponseDTO> updateTopic(@RequestBody @Valid UpdateTopicDTO topic, @PathVariable Long id){
+        topicNotFoundException(id);
         Topic newTopic = topicRepository.getReferenceById(id);
         newTopic.updateTopic(topic);
         duplicatedTopicValidator.validate(newTopic);
@@ -55,14 +58,23 @@ public class TopicController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity <Object> deleteTopic(@PathVariable @Valid Long id){
-        Topic topic = topicRepository.getReferenceById(id);
-        topic.deactivateTopic();
-        return ResponseEntity.noContent().build();
+        topicNotFoundException(id);
+        topicRepository.deleteById(id);
+        //topic.deactivateTopic();
+        return ResponseEntity.ok("Topic with id " + id + " was successfully deleted.");
     }
 
-    @GetMapping({"/{id}"})
+    @GetMapping("/{id}")
     public ResponseEntity<TopicResponseDTO>showTopic(@PathVariable @Valid Long id){
+        topicNotFoundException(id);
         return ResponseEntity.ok(topicRepository.findByIdAndStatusTrue(id));
+    }
+
+    public void topicNotFoundException(Long id) {
+        Optional<Topic> topic = topicRepository.findById(id);
+        if (topic.isEmpty()) {
+            throw new TopicNotFoundException("Topic not found with id: " + id);
+        }
     }
 
 }
