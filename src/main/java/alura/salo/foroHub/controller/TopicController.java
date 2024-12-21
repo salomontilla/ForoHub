@@ -1,6 +1,6 @@
 package alura.salo.foroHub.controller;
 
-import alura.salo.foroHub.exceptions.TopicNotFoundException;
+import alura.salo.foroHub.infra.exceptions.TopicNotFoundException;
 import alura.salo.foroHub.model.topic.Topic;
 import alura.salo.foroHub.model.topic.TopicDTO;
 import alura.salo.foroHub.model.topic.TopicResponseDTO;
