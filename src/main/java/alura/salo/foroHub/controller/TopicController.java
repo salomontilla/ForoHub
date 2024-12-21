@@ -50,4 +50,12 @@ public class TopicController {
                 newTopic.getCreationDate(), newTopic.getStatus(), newTopic.getAutor(), newTopic.getCurse()));
     }
 
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity deleteTopic(@PathVariable Long id){
+        Topic topic = topicRepository.getReferenceById(id);
+        topic.deactivateTopic();
+        return ResponseEntity.noContent().build();
+    }
+
 }

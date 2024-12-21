@@ -69,4 +69,8 @@ public class Topic {
     public Curse getCurse() {
         return curse;
     }
+
+    public void deactivateTopic() {
+        this.status = false;
+    }
 }
