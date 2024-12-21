@@ -58,4 +58,9 @@ public class TopicController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping({"/{id}"})
+    public ResponseEntity<TopicResponseDTO>showTopic(@PathVariable Long id){
+        return ResponseEntity.ok(topicRepository.findByIdAndStatusTrue(id));
+    }
+
 }
