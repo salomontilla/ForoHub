@@ -42,17 +42,18 @@ public class TopicController {
         return ResponseEntity.ok(topicRepository.findByStatusTrue(pageable).map(TopicResponseDTO::new));
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity <TopicResponseDTO> updateTopic(@RequestBody @Valid UpdateTopicDTO topic){
-        Topic newTopic = topicRepository.getReferenceById(topic.id());newTopic.updateTopic(topic);
+    public ResponseEntity <TopicResponseDTO> updateTopic(@RequestBody @Valid UpdateTopicDTO topic, @PathVariable Long id){
+        Topic newTopic = topicRepository.getReferenceById(id);
+        newTopic.updateTopic(topic);
         return ResponseEntity.ok(new TopicResponseDTO(newTopic.getId(), newTopic.getTitle(), newTopic.getMessage(),
                 newTopic.getCreationDate(), newTopic.getStatus(), newTopic.getAutor(), newTopic.getCurse()));
     }
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity deleteTopic(@PathVariable Long id){
+    public ResponseEntity <Object> deleteTopic(@PathVariable Long id){
         Topic topic = topicRepository.getReferenceById(id);
         topic.deactivateTopic();
         return ResponseEntity.noContent().build();
