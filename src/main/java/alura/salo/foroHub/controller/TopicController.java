@@ -54,14 +54,14 @@ public class TopicController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    public ResponseEntity <Object> deleteTopic(@PathVariable Long id){
+    public ResponseEntity <Object> deleteTopic(@PathVariable @Valid Long id){
         Topic topic = topicRepository.getReferenceById(id);
         topic.deactivateTopic();
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping({"/{id}"})
-    public ResponseEntity<TopicResponseDTO>showTopic(@PathVariable Long id){
+    public ResponseEntity<TopicResponseDTO>showTopic(@PathVariable @Valid Long id){
         return ResponseEntity.ok(topicRepository.findByIdAndStatusTrue(id));
     }
 
