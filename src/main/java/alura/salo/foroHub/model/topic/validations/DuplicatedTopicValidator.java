@@ -13,7 +13,7 @@ public class DuplicatedTopicValidator {
     public void validate(Topic topic) {
         var duplicatedTopic = topicRepository.existsByTitleAndMessage(topic.getTitle(), topic.getMessage());
         if(duplicatedTopic) {
-            throw new RuntimeException("There is already a topic with the same title");
+            throw new RuntimeException("There is already a topic with the same title and message");
         }
     }
 }

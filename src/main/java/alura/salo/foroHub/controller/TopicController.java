@@ -47,6 +47,7 @@ public class TopicController {
     public ResponseEntity <TopicResponseDTO> updateTopic(@RequestBody @Valid UpdateTopicDTO topic, @PathVariable Long id){
         Topic newTopic = topicRepository.getReferenceById(id);
         newTopic.updateTopic(topic);
+        duplicatedTopicValidator.validate(newTopic);
         return ResponseEntity.ok(new TopicResponseDTO(newTopic.getId(), newTopic.getTitle(), newTopic.getMessage(),
                 newTopic.getCreationDate(), newTopic.getStatus(), newTopic.getAutor(), newTopic.getCurse()));
     }
