@@ -4,7 +4,7 @@ Forum API REST is a project designed to manage discussion forums. It provides se
 
 ---
 ## 🛠️ Technologies used
-- **Java 17**
+- **Java 21**
 - **Spring Boot**
 - **Spring Security**
 - **JWT (JSON Web Tokens)**
@@ -35,3 +35,4 @@ Forum API REST is a project designed to manage discussion forums. It provides se
 | `POST` | `/topics` | Create a new topic | Yes |
 | `PUT` | `/topics/{id}` | Update a topic by ID | Yes |
 | `DELETE` | `/topics/{id}` | Delete a topic by ID | Yes |
+> Consulta la documentación Swagger en: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
